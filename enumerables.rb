@@ -9,6 +9,8 @@ def spicy_foods
   ]
 end
 
+pp spicy_foods
+
 # given an array of spicy foods, **return an array of strings**
 # with the names of each spicy food
 def get_names(spicy_foods)
@@ -16,12 +18,17 @@ def get_names(spicy_foods)
   spicy_foods.map { |food| food[:name] }
 end
 
+names = get_names(spicy_foods)
+puts names
+
 # given an array of spicy foods, **return an array of hashes**
 # where the heat level of the food is greater than 5
 def spiciest_foods(spicy_foods)
   # your code here
   spicy_foods.select { |food| food[:heat_level] > 5 }
 end
+
+spiciest_foods(spicy_foods)
 
 # given an array of spicy foods, **output to the terminal**
 # each spicy food in the following format:
@@ -35,6 +42,8 @@ def print_spicy_foods(spicy_foods)
     puts "#{food[:name]} (#{food[:cuisine]}) | Heat Level: #{heat_level}"
   end
 end
+
+print_spicy_foods(spicy_foods)
 
 # given an array of spicy foods and a string representing a cuisine, **return a single hash**
 # for the spicy food whose cuisine matches the cuisine being passed to the method
@@ -50,6 +59,8 @@ def sort_by_heat(spicy_foods)
   spicy_foods.sort_by { |food| food[:heat_level] }
 end
 
+sort_by_heat(spicy_foods)
+
 # given an array of spicy foods, output to the terminal ONLY
 # the spicy foods that have a heat level greater than 5, in the following format:
 # Buffalo Wings (American) | Heat Level: 🌶🌶🌶
@@ -57,8 +68,13 @@ end
 def print_spiciest_foods(spicy_foods)
   # your code here
   spiciest_foods = spicy_foods.select { |food| food[:heat_level] > 5 }
-  print_spicy_foods(spiciest_foods)
+  spiciest_foods.each do |food|
+    heat_level = "🌶" * food[:heat_level]
+    puts "#{food[:name]} (#{food[:cuisine]}) | Heat Level: #{heat_level}"
+  end
 end
+
+print_spiciest_foods(spicy_foods)
 
 # given an array of spicy foods, return an integer representing
 # the average heat level of all the spicy foods in the array
@@ -69,3 +85,7 @@ def average_heat_level(spicy_foods)
   total_heat = spicy_foods.reduce(0) { |sum, food| sum + food[:heat_level] }
   average = total_heat.to_f / spicy_foods.length
 end
+
+average = average_heat_level(spicy_foods)
+
+puts average
